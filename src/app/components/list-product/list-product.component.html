@@ -1,0 +1,30 @@
+<div class="float-left">
+    <div>
+      <label class="label label-default" for="search"> Filtering By Product Name Or Description : &nbsp; </label>
+      <input [(ngModel)] = 'productName'>
+    </div>
+    </div>
+    <div class="float-right">
+    <table class="table table-striped" >
+      <thead>
+        <tr>
+          <th scope="col">id</th>
+          <th scope="col">ProductName</th>
+          <th scope="col">UnitPrice</th>
+          <th scope="col">UnitStock</th>
+          <th scope="col">ProductDescription</th>
+        </tr>
+      </thead>
+      <tbody *ngFor ="let d of products | filter:productName | paginate: {itemsPerPage: 4,currentPage:p}">
+        <tr>
+          <td>{{d.id}}</td>
+          <td>{{d.productName}}</td>
+          <td>{{d.unitPrice}}</td>
+          <td>{{d.unitStock}}</td>
+          <td>{{d.productDescription}}</td>
+        </tr>
+      </tbody>
+      <pagination-controls (pageChange)="p= $event" class="float-right">
+      </pagination-controls>  
+    </table>
+    </div>
